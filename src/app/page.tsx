@@ -5,69 +5,63 @@ export default function Home() {
     <main className="min-h-screen bg-white">
 
       {/* Navbar */}
-      <nav className="flex justify-between items-center px-12 py-6 shadow-sm">
+      <header className="border-b border-gray-200 bg-white">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-5">
 
-        <h1 className="text-3xl font-bold text-blue-900">
-          DEMIR TORNA
-        </h1>
+          <h1 className="text-2xl font-bold text-blue-900 tracking-wide">
+            DEMIR TORNA
+          </h1>
 
-        <Link
-          href="/login"
-          className="bg-blue-900 text-white px-6 py-3 rounded-xl hover:bg-blue-800 transition"
-        >
-          Admin Login
-        </Link>
+          <Link
+            href="/login"
+            className="bg-blue-900 text-white px-5 py-2 rounded-lg hover:bg-blue-800 transition"
+          >
+            Admin Login
+          </Link>
 
-      </nav>
+        </div>
+      </header>
 
       {/* Hero */}
+      <section className="max-w-7xl mx-auto px-8 py-24">
 
-      <section className="max-w-7xl mx-auto px-12 py-24 grid md:grid-cols-2 items-center gap-16">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
 
-        <div>
+          {/* Left */}
+          <div>
 
-          <p className="text-blue-700 font-semibold uppercase tracking-widest">
-            Industrial Solutions
-          </p>
+            <p className="uppercase tracking-widest text-blue-700 font-semibold mb-3">
+              Industrial Solutions
+            </p>
 
-          <h2 className="text-6xl font-bold text-slate-900 leading-tight mt-4">
-            Precision CNC <br />
-            Manufacturing
-          </h2>
+            <h2 className="text-6xl font-bold text-slate-900 leading-tight">
+              Precision CNC Manufacturing
+            </h2>
 
-          <p className="text-gray-600 mt-8 text-lg leading-8">
-            DEMIR TORNA provides high-quality industrial machining,
-            precision turning and manufacturing solutions using
-            modern CNC technology.
-          </p>
+            <p className="mt-6 text-gray-600 text-lg leading-8">
+              DEMIR TORNA provides high-quality industrial machining,
+              precision turning, and manufacturing solutions using
+              modern CNC technology.
+            </p>
 
-          <div className="flex gap-5 mt-10">
+            <div className="flex gap-4 mt-10">
 
-            <Link
-              href="/dashboard/gallery"
-              className="bg-blue-900 text-white px-8 py-4 rounded-xl hover:bg-blue-800 transition"
-            >
-              View Products
-            </Link>
+              <button className="bg-blue-900 text-white px-7 py-3 rounded-lg hover:bg-blue-800 transition">
+                View Products
+              </button>
 
-            <Link
-              href="/login"
-              className="border border-blue-900 text-blue-900 px-8 py-4 rounded-xl hover:bg-blue-900 hover:text-white transition"
-            >
-              Admin Login
-            </Link>
+              <button className="border border-blue-900 text-blue-900 px-7 py-3 rounded-lg hover:bg-blue-50 transition">
+                Contact Us
+              </button>
+
+            </div>
 
           </div>
 
-        </div>
-
-        {/* صورة مؤقتة */}
-
-        <div className="h-[500px] rounded-3xl bg-gradient-to-br from-blue-100 to-slate-200 flex items-center justify-center">
-
-          <span className="text-2xl text-slate-500">
+          {/* Right */}
+          <div className="bg-blue-100 rounded-3xl h-[420px] flex items-center justify-center text-gray-500 text-xl">
             Company Image
-          </span>
+          </div>
 
         </div>
 
