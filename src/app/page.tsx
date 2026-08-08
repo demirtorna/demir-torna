@@ -56,9 +56,13 @@ export default function Home() {
 
             <div className="flex gap-5 mt-10">
 
-              <button className="bg-blue-900 text-white px-7 py-4 rounded-xl hover:bg-blue-800 transition">
+              {/* View Products */}
+              <Link
+                href="/dashboard/gallery"
+                className="bg-blue-900 text-white px-7 py-4 rounded-xl hover:bg-blue-800 transition"
+              >
                 View Products
-              </button>
+              </Link>
 
               <Link
                 href="/login"
@@ -102,9 +106,11 @@ export default function Home() {
 
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition">
             <div className="text-5xl mb-5">⚙️</div>
+
             <h3 className="text-xl font-bold text-blue-900">
               CNC Turning
             </h3>
+
             <p className="text-gray-600 mt-3">
               High precision turning services for industrial parts.
             </p>
@@ -112,9 +118,11 @@ export default function Home() {
 
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition">
             <div className="text-5xl mb-5">🏭</div>
+
             <h3 className="text-xl font-bold text-blue-900">
               Industrial Manufacturing
             </h3>
+
             <p className="text-gray-600 mt-3">
               Modern production using advanced CNC machines.
             </p>
@@ -122,9 +130,11 @@ export default function Home() {
 
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition">
             <div className="text-5xl mb-5">🔩</div>
+
             <h3 className="text-xl font-bold text-blue-900">
               Metal Components
             </h3>
+
             <p className="text-gray-600 mt-3">
               Custom metal parts with exceptional quality.
             </p>
@@ -132,9 +142,11 @@ export default function Home() {
 
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition">
             <div className="text-5xl mb-5">🛠️</div>
+
             <h3 className="text-xl font-bold text-blue-900">
               Custom Solutions
             </h3>
+
             <p className="text-gray-600 mt-3">
               Manufacturing according to customer requirements.
             </p>
