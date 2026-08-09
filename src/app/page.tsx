@@ -1,13 +1,37 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
-export default async function Home() {
-  const { data: products, error } = await supabase
-    .from("products")
-    .select("*")
-    .order("created_at", { ascending: false })
-    .limit(3);
+type Product = {
+  id: string;
+  name: string;
+  description: string | null;
+  image_url: string;
+};
+
+export default function Home() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loadingProducts, setLoadingProducts] = useState(true);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const { data, error } = await supabase
+        .from("products")
+        .select("id, name, description, image_url")
+        .order("created_at", { ascending: false })
+        .limit(3);
+
+      if (!error && data) {
+        setProducts(data);
+      }
+
+      setLoadingProducts(false);
+    };
+
+    getProducts();
+  }, []);
 
   return (
     <main className="min-h-screen bg-slate-50">
@@ -16,7 +40,7 @@ export default async function Home() {
       <header className="w-full bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-5">
 
-          <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
 
             <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-white font-bold text-lg">
               D
@@ -32,7 +56,7 @@ export default async function Home() {
               </p>
             </div>
 
-          </div>
+          </Link>
 
           <Link
             href="/login"
@@ -200,14 +224,24 @@ export default async function Home() {
 
           </div>
 
-          {/* Real Products */}
-          {error ? (
-            <div className="text-center bg-red-50 border border-red-200 rounded-2xl p-6">
-              <p className="text-red-600 font-semibold">
-                Unable to load products.
+          {/* Products */}
+          {loadingProducts ? (
+
+            <div className="text-center py-16">
+              <p className="text-blue-900 font-semibold text-lg">
+                Loading products...
               </p>
             </div>
-          ) : products && products.length > 0 ? (
+
+          ) : products.length === 0 ? (
+
+            <div className="text-center py-16 bg-slate-50 rounded-3xl">
+              <p className="text-gray-500 text-lg">
+                No products available yet.
+              </p>
+            </div>
+
+          ) : (
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
@@ -218,54 +252,45 @@ export default async function Home() {
                   className="group bg-slate-50 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300"
                 >
 
-                  <div className="relative h-72 bg-slate-200">
+                  {/* Image */}
+                  <div className="h-72 bg-slate-200 overflow-hidden">
 
-                    <Image
+                    <img
                       src={product.image_url}
-                      alt={product.name || "DEMIR TORNA product"}
-                      fill
-                      className="object-cover group-hover:scale-105 transition duration-500"
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                     />
 
                   </div>
 
+                  {/* Information */}
                   <div className="p-7">
 
                     <p className="text-blue-700 text-sm font-semibold uppercase tracking-wide">
-                      DEMIR TORNA
+                      DEMIR TORNA PRODUCT
                     </p>
 
                     <h3 className="text-2xl font-bold text-slate-900 mt-2">
                       {product.name}
                     </h3>
 
-                    <p className="text-gray-600 mt-3 leading-7">
-                      {product.description}
+                    <p className="text-gray-600 mt-3 leading-7 line-clamp-3">
+                      {product.description ||
+                        "Precision manufactured industrial component."}
                     </p>
+
+                    <Link
+                      href={`/products/${product.id}`}
+                      className="inline-block mt-5 text-blue-900 font-semibold hover:underline"
+                    >
+                      View Details →
+                    </Link>
 
                   </div>
 
                 </div>
 
               ))}
-
-            </div>
-
-          ) : (
-
-            <div className="text-center bg-slate-50 rounded-3xl p-16">
-
-              <div className="text-5xl mb-5">
-                ⚙️
-              </div>
-
-              <h3 className="text-2xl font-bold text-slate-900">
-                Products Coming Soon
-              </h3>
-
-              <p className="text-gray-500 mt-3">
-                Our latest products will appear here soon.
-              </p>
 
             </div>
 
@@ -286,6 +311,27 @@ export default async function Home() {
         </div>
 
       </section>
+
+      {/* Footer */}
+      <footer className="bg-blue-900 text-white py-10">
+
+        <div className="max-w-7xl mx-auto px-8 text-center">
+
+          <h3 className="text-2xl font-bold">
+            DEMIR TORNA
+          </h3>
+
+          <p className="text-blue-200 mt-2">
+            CNC MACHINING
+          </p>
+
+          <p className="text-blue-300 text-sm mt-5">
+            Precision manufacturing and industrial solutions.
+          </p>
+
+        </div>
+
+      </footer>
 
     </main>
   );
