@@ -6,6 +6,7 @@ export default function LoginPage() {
 
       <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-10 border border-gray-200">
 
+        {/* Logo */}
         <div className="text-center">
 
           <div className="w-20 h-20 mx-auto rounded-full bg-blue-900 flex items-center justify-center text-white text-3xl font-bold shadow-lg">
@@ -22,6 +23,7 @@ export default function LoginPage() {
 
         </div>
 
+        {/* Email */}
         <div className="mt-8">
 
           <label className="block mb-2 text-blue-900 font-semibold">
@@ -31,11 +33,12 @@ export default function LoginPage() {
           <input
             type="email"
             placeholder="Enter your email"
-            className="w-full rounded-xl border border-gray-300 p-3 outline-none focus:ring-2 focus:ring-blue-800 transition"
+            className="w-full h-12 rounded-xl border-2 border-gray-300 bg-white text-gray-900 px-4 placeholder-gray-400 shadow-sm outline-none focus:border-blue-800 focus:ring-2 focus:ring-blue-200 transition"
           />
 
         </div>
 
+        {/* Password */}
         <div className="mt-5">
 
           <label className="block mb-2 text-blue-900 font-semibold">
@@ -45,11 +48,12 @@ export default function LoginPage() {
           <input
             type="password"
             placeholder="Enter your password"
-            className="w-full rounded-xl border border-gray-300 p-3 outline-none focus:ring-2 focus:ring-blue-800 transition"
+            className="w-full h-12 rounded-xl border-2 border-gray-300 bg-white text-gray-900 px-4 placeholder-gray-400 shadow-sm outline-none focus:border-blue-800 focus:ring-2 focus:ring-blue-200 transition"
           />
 
         </div>
 
+        {/* Login */}
         <button
           onClick={() => (window.location.href = "/dashboard")}
           className="w-full mt-8 bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 rounded-xl transition duration-300 shadow-lg"
