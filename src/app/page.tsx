@@ -9,6 +9,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-5">
 
           <div className="flex items-center gap-3">
+
             <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-white font-bold text-lg">
               D
             </div>
@@ -22,6 +23,7 @@ export default function Home() {
                 CNC MACHINING
               </p>
             </div>
+
           </div>
 
           <Link
@@ -51,12 +53,12 @@ export default function Home() {
 
             <p className="text-gray-600 mt-8 text-lg leading-8">
               DEMIR TORNA provides high-quality industrial machining,
-              precision turning and manufacturing solutions using modern CNC technology.
+              precision turning and manufacturing solutions using modern
+              CNC technology.
             </p>
 
             <div className="flex gap-5 mt-10">
 
-              {/* View Products */}
               <Link
                 href="/dashboard/gallery"
                 className="bg-blue-900 text-white px-7 py-4 rounded-xl hover:bg-blue-800 transition"
@@ -75,6 +77,7 @@ export default function Home() {
 
           </div>
 
+          {/* Company Image */}
           <div className="flex justify-center">
 
             <div className="w-full h-[500px] rounded-3xl bg-blue-100 flex items-center justify-center text-5xl text-blue-900 font-bold shadow-lg">
@@ -150,6 +153,181 @@ export default function Home() {
             <p className="text-gray-600 mt-3">
               Manufacturing according to customer requirements.
             </p>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* Featured Products */}
+      <section className="bg-white py-24">
+
+        <div className="max-w-7xl mx-auto px-8">
+
+          {/* Section Header */}
+          <div className="flex items-end justify-between mb-14">
+
+            <div>
+
+              <p className="text-blue-700 font-bold tracking-widest uppercase">
+                Our Products
+              </p>
+
+              <h2 className="text-4xl font-bold text-slate-900 mt-3">
+                Featured Products
+              </h2>
+
+              <p className="text-gray-500 mt-3 max-w-xl">
+                Discover some of our precision-manufactured industrial
+                components and CNC solutions.
+              </p>
+
+            </div>
+
+            <Link
+              href="/dashboard/gallery"
+              className="hidden md:block text-blue-900 font-semibold hover:underline"
+            >
+              View All Products →
+            </Link>
+
+          </div>
+
+          {/* Product Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            {/* Product 1 */}
+            <div className="group bg-slate-50 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300">
+
+              <div className="h-72 bg-slate-200 flex items-center justify-center group-hover:bg-blue-50 transition">
+
+                <div className="text-center">
+                  <div className="text-5xl mb-3">
+                    ⚙️
+                  </div>
+
+                  <span className="text-slate-400">
+                    Product Image
+                  </span>
+                </div>
+
+              </div>
+
+              <div className="p-7">
+
+                <p className="text-blue-700 text-sm font-semibold uppercase tracking-wide">
+                  CNC Component
+                </p>
+
+                <h3 className="text-2xl font-bold text-slate-900 mt-2">
+                  Precision Part
+                </h3>
+
+                <p className="text-gray-600 mt-3 leading-7">
+                  High precision industrial component manufactured
+                  according to customer specifications.
+                </p>
+
+                <button className="mt-5 text-blue-900 font-semibold hover:underline">
+                  View Details →
+                </button>
+
+              </div>
+
+            </div>
+
+            {/* Product 2 */}
+            <div className="group bg-slate-50 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300">
+
+              <div className="h-72 bg-slate-200 flex items-center justify-center group-hover:bg-blue-50 transition">
+
+                <div className="text-center">
+                  <div className="text-5xl mb-3">
+                    🔩
+                  </div>
+
+                  <span className="text-slate-400">
+                    Product Image
+                  </span>
+                </div>
+
+              </div>
+
+              <div className="p-7">
+
+                <p className="text-blue-700 text-sm font-semibold uppercase tracking-wide">
+                  Metal Component
+                </p>
+
+                <h3 className="text-2xl font-bold text-slate-900 mt-2">
+                  Industrial Part
+                </h3>
+
+                <p className="text-gray-600 mt-3 leading-7">
+                  Durable and precisely manufactured metal components
+                  for industrial applications.
+                </p>
+
+                <button className="mt-5 text-blue-900 font-semibold hover:underline">
+                  View Details →
+                </button>
+
+              </div>
+
+            </div>
+
+            {/* Product 3 */}
+            <div className="group bg-slate-50 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300">
+
+              <div className="h-72 bg-slate-200 flex items-center justify-center group-hover:bg-blue-50 transition">
+
+                <div className="text-center">
+                  <div className="text-5xl mb-3">
+                    🛠️
+                  </div>
+
+                  <span className="text-slate-400">
+                    Product Image
+                  </span>
+                </div>
+
+              </div>
+
+              <div className="p-7">
+
+                <p className="text-blue-700 text-sm font-semibold uppercase tracking-wide">
+                  Custom Manufacturing
+                </p>
+
+                <h3 className="text-2xl font-bold text-slate-900 mt-2">
+                  Custom Component
+                </h3>
+
+                <p className="text-gray-600 mt-3 leading-7">
+                  Custom-made industrial parts produced according
+                  to specific requirements.
+                </p>
+
+                <button className="mt-5 text-blue-900 font-semibold hover:underline">
+                  View Details →
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* Mobile View All */}
+          <div className="mt-10 text-center md:hidden">
+
+            <Link
+              href="/dashboard/gallery"
+              className="text-blue-900 font-semibold hover:underline"
+            >
+              View All Products →
+            </Link>
+
           </div>
 
         </div>
