@@ -1,37 +1,14 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
-type Product = {
-  id: string;
-  name: string;
-  description: string | null;
-  image_url: string;
-};
+export const dynamic = "force-dynamic";
 
-export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loadingProducts, setLoadingProducts] = useState(true);
-
-  useEffect(() => {
-    const getProducts = async () => {
-      const { data, error } = await supabase
-        .from("products")
-        .select("id, name, description, image_url")
-        .order("created_at", { ascending: false })
-        .limit(3);
-
-      if (!error && data) {
-        setProducts(data);
-      }
-
-      setLoadingProducts(false);
-    };
-
-    getProducts();
-  }, []);
+export default async function Home() {
+  const { data: products } = await supabase
+    .from("products")
+    .select("id, name, description, image_url")
+    .order("id", { ascending: false })
+    .limit(3);
 
   return (
     <main className="min-h-screen bg-slate-50">
@@ -40,7 +17,8 @@ export default function Home() {
       <header className="w-full bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-5">
 
-          <Link href="/" className="flex items-center gap-3">
+          {/* Logo */}
+          <div className="flex items-center gap-3">
 
             <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-white font-bold text-lg">
               D
@@ -56,8 +34,9 @@ export default function Home() {
               </p>
             </div>
 
-          </Link>
+          </div>
 
+          {/* Login */}
           <Link
             href="/login"
             className="bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-2xl transition font-semibold"
@@ -68,11 +47,13 @@ export default function Home() {
         </div>
       </header>
 
+
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-8 py-24">
 
         <div className="grid md:grid-cols-2 gap-20 items-center">
 
+          {/* Left */}
           <div>
 
             <p className="text-blue-700 font-bold tracking-widest uppercase">
@@ -109,6 +90,7 @@ export default function Home() {
 
           </div>
 
+
           {/* Company Image */}
           <div className="flex justify-center">
 
@@ -121,6 +103,7 @@ export default function Home() {
         </div>
 
       </section>
+
 
       {/* Services */}
       <section className="max-w-7xl mx-auto px-8 py-20">
@@ -137,10 +120,14 @@ export default function Home() {
 
         </div>
 
+
         <div className="grid md:grid-cols-4 gap-8">
 
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition">
-            <div className="text-5xl mb-5">⚙️</div>
+
+            <div className="text-5xl mb-5">
+              ⚙️
+            </div>
 
             <h3 className="text-xl font-bold text-blue-900">
               CNC Turning
@@ -149,10 +136,15 @@ export default function Home() {
             <p className="text-gray-600 mt-3">
               High precision turning services for industrial parts.
             </p>
+
           </div>
 
+
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition">
-            <div className="text-5xl mb-5">🏭</div>
+
+            <div className="text-5xl mb-5">
+              🏭
+            </div>
 
             <h3 className="text-xl font-bold text-blue-900">
               Industrial Manufacturing
@@ -161,10 +153,15 @@ export default function Home() {
             <p className="text-gray-600 mt-3">
               Modern production using advanced CNC machines.
             </p>
+
           </div>
 
+
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition">
-            <div className="text-5xl mb-5">🔩</div>
+
+            <div className="text-5xl mb-5">
+              🔩
+            </div>
 
             <h3 className="text-xl font-bold text-blue-900">
               Metal Components
@@ -173,10 +170,15 @@ export default function Home() {
             <p className="text-gray-600 mt-3">
               Custom metal parts with exceptional quality.
             </p>
+
           </div>
 
+
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition">
-            <div className="text-5xl mb-5">🛠️</div>
+
+            <div className="text-5xl mb-5">
+              🛠️
+            </div>
 
             <h3 className="text-xl font-bold text-blue-900">
               Custom Solutions
@@ -185,17 +187,20 @@ export default function Home() {
             <p className="text-gray-600 mt-3">
               Manufacturing according to customer requirements.
             </p>
+
           </div>
 
         </div>
 
       </section>
 
+
       {/* Featured Products */}
       <section className="bg-white py-24">
 
         <div className="max-w-7xl mx-auto px-8">
 
+          {/* Header */}
           <div className="flex items-end justify-between mb-14">
 
             <div>
@@ -215,6 +220,7 @@ export default function Home() {
 
             </div>
 
+
             <Link
               href="/dashboard/gallery"
               className="hidden md:block text-blue-900 font-semibold hover:underline"
@@ -224,24 +230,9 @@ export default function Home() {
 
           </div>
 
+
           {/* Products */}
-          {loadingProducts ? (
-
-            <div className="text-center py-16">
-              <p className="text-blue-900 font-semibold text-lg">
-                Loading products...
-              </p>
-            </div>
-
-          ) : products.length === 0 ? (
-
-            <div className="text-center py-16 bg-slate-50 rounded-3xl">
-              <p className="text-gray-500 text-lg">
-                No products available yet.
-              </p>
-            </div>
-
-          ) : (
+          {products && products.length > 0 ? (
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
@@ -255,29 +246,42 @@ export default function Home() {
                   {/* Image */}
                   <div className="h-72 bg-slate-200 overflow-hidden">
 
-                    <img
-                      src={product.image_url}
-                      alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                    />
+                    {product.image_url ? (
+
+                      <img
+                        src={product.image_url}
+                        alt={product.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                      />
+
+                    ) : (
+
+                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                        No Image
+                      </div>
+
+                    )}
 
                   </div>
 
-                  {/* Information */}
+
+                  {/* Product Info */}
                   <div className="p-7">
 
                     <p className="text-blue-700 text-sm font-semibold uppercase tracking-wide">
                       DEMIR TORNA PRODUCT
                     </p>
 
+
                     <h3 className="text-2xl font-bold text-slate-900 mt-2">
                       {product.name}
                     </h3>
 
-                    <p className="text-gray-600 mt-3 leading-7 line-clamp-3">
-                      {product.description ||
-                        "Precision manufactured industrial component."}
+
+                    <p className="text-gray-600 mt-3 leading-7">
+                      {product.description || "Industrial CNC manufactured product."}
                     </p>
+
 
                     <Link
                       href={`/products/${product.id}`}
@@ -294,7 +298,26 @@ export default function Home() {
 
             </div>
 
+          ) : (
+
+            <div className="text-center py-16">
+
+              <div className="text-5xl mb-4">
+                ⚙️
+              </div>
+
+              <h3 className="text-2xl font-bold text-slate-900">
+                No Products Yet
+              </h3>
+
+              <p className="text-gray-500 mt-2">
+                Products uploaded by the administrator will appear here.
+              </p>
+
+            </div>
+
           )}
+
 
           {/* Mobile View All */}
           <div className="mt-10 text-center md:hidden">
@@ -312,22 +335,41 @@ export default function Home() {
 
       </section>
 
+
       {/* Footer */}
-      <footer className="bg-blue-900 text-white py-10">
+      <footer className="bg-blue-950 text-white py-10">
 
-        <div className="max-w-7xl mx-auto px-8 text-center">
+        <div className="max-w-7xl mx-auto px-8">
 
-          <h3 className="text-2xl font-bold">
-            DEMIR TORNA
-          </h3>
+          <div className="flex flex-col md:flex-row justify-between gap-6">
 
-          <p className="text-blue-200 mt-2">
-            CNC MACHINING
-          </p>
+            <div>
 
-          <p className="text-blue-300 text-sm mt-5">
-            Precision manufacturing and industrial solutions.
-          </p>
+              <h3 className="text-2xl font-bold">
+                DEMIR TORNA
+              </h3>
+
+              <p className="text-blue-200 mt-2">
+                CNC MACHINING
+              </p>
+
+            </div>
+
+
+            <div className="text-blue-200">
+
+              <p>
+                Precision CNC manufacturing and industrial solutions.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div className="border-t border-blue-800 mt-8 pt-6 text-sm text-blue-300">
+            © {new Date().getFullYear()} DEMIR TORNA. All rights reserved.
+          </div>
 
         </div>
 
