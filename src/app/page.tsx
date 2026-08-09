@@ -1,6 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
+import { supabase } from "@/lib/supabase";
 
-export default function Home() {
+export default async function Home() {
+  const { data: products, error } = await supabase
+    .from("products")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .limit(3);
+
   return (
     <main className="min-h-screen bg-slate-50">
 
@@ -164,7 +172,6 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-8">
 
-          {/* Section Header */}
           <div className="flex items-end justify-between mb-14">
 
             <div>
@@ -193,130 +200,76 @@ export default function Home() {
 
           </div>
 
-          {/* Product Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Real Products */}
+          {error ? (
+            <div className="text-center bg-red-50 border border-red-200 rounded-2xl p-6">
+              <p className="text-red-600 font-semibold">
+                Unable to load products.
+              </p>
+            </div>
+          ) : products && products.length > 0 ? (
 
-            {/* Product 1 */}
-            <div className="group bg-slate-50 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-              <div className="h-72 bg-slate-200 flex items-center justify-center group-hover:bg-blue-50 transition">
+              {products.map((product) => (
 
-                <div className="text-center">
-                  <div className="text-5xl mb-3">
-                    ⚙️
+                <div
+                  key={product.id}
+                  className="group bg-slate-50 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300"
+                >
+
+                  <div className="relative h-72 bg-slate-200">
+
+                    <Image
+                      src={product.image_url}
+                      alt={product.name || "DEMIR TORNA product"}
+                      fill
+                      className="object-cover group-hover:scale-105 transition duration-500"
+                    />
+
                   </div>
 
-                  <span className="text-slate-400">
-                    Product Image
-                  </span>
+                  <div className="p-7">
+
+                    <p className="text-blue-700 text-sm font-semibold uppercase tracking-wide">
+                      DEMIR TORNA
+                    </p>
+
+                    <h3 className="text-2xl font-bold text-slate-900 mt-2">
+                      {product.name}
+                    </h3>
+
+                    <p className="text-gray-600 mt-3 leading-7">
+                      {product.description}
+                    </p>
+
+                  </div>
+
                 </div>
 
-              </div>
-
-              <div className="p-7">
-
-                <p className="text-blue-700 text-sm font-semibold uppercase tracking-wide">
-                  CNC Component
-                </p>
-
-                <h3 className="text-2xl font-bold text-slate-900 mt-2">
-                  Precision Part
-                </h3>
-
-                <p className="text-gray-600 mt-3 leading-7">
-                  High precision industrial component manufactured
-                  according to customer specifications.
-                </p>
-
-                <button className="mt-5 text-blue-900 font-semibold hover:underline">
-                  View Details →
-                </button>
-
-              </div>
+              ))}
 
             </div>
 
-            {/* Product 2 */}
-            <div className="group bg-slate-50 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300">
+          ) : (
 
-              <div className="h-72 bg-slate-200 flex items-center justify-center group-hover:bg-blue-50 transition">
+            <div className="text-center bg-slate-50 rounded-3xl p-16">
 
-                <div className="text-center">
-                  <div className="text-5xl mb-3">
-                    🔩
-                  </div>
-
-                  <span className="text-slate-400">
-                    Product Image
-                  </span>
-                </div>
-
+              <div className="text-5xl mb-5">
+                ⚙️
               </div>
 
-              <div className="p-7">
+              <h3 className="text-2xl font-bold text-slate-900">
+                Products Coming Soon
+              </h3>
 
-                <p className="text-blue-700 text-sm font-semibold uppercase tracking-wide">
-                  Metal Component
-                </p>
-
-                <h3 className="text-2xl font-bold text-slate-900 mt-2">
-                  Industrial Part
-                </h3>
-
-                <p className="text-gray-600 mt-3 leading-7">
-                  Durable and precisely manufactured metal components
-                  for industrial applications.
-                </p>
-
-                <button className="mt-5 text-blue-900 font-semibold hover:underline">
-                  View Details →
-                </button>
-
-              </div>
+              <p className="text-gray-500 mt-3">
+                Our latest products will appear here soon.
+              </p>
 
             </div>
 
-            {/* Product 3 */}
-            <div className="group bg-slate-50 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300">
-
-              <div className="h-72 bg-slate-200 flex items-center justify-center group-hover:bg-blue-50 transition">
-
-                <div className="text-center">
-                  <div className="text-5xl mb-3">
-                    🛠️
-                  </div>
-
-                  <span className="text-slate-400">
-                    Product Image
-                  </span>
-                </div>
-
-              </div>
-
-              <div className="p-7">
-
-                <p className="text-blue-700 text-sm font-semibold uppercase tracking-wide">
-                  Custom Manufacturing
-                </p>
-
-                <h3 className="text-2xl font-bold text-slate-900 mt-2">
-                  Custom Component
-                </h3>
-
-                <p className="text-gray-600 mt-3 leading-7">
-                  Custom-made industrial parts produced according
-                  to specific requirements.
-                </p>
-
-                <button className="mt-5 text-blue-900 font-semibold hover:underline">
-                  View Details →
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
+          )}
 
           {/* Mobile View All */}
           <div className="mt-10 text-center md:hidden">
