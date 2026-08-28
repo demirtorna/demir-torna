@@ -13,8 +13,8 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-slate-50">
 
-      {/* Navbar */}
-      <header className="w-full bg-white shadow-sm border-b">
+      {/* ================= NAVBAR ================= */}
+      <header className="w-full bg-white shadow-sm border-b relative z-20">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-5">
 
           {/* Logo */}
@@ -48,54 +48,113 @@ export default async function Home() {
       </header>
 
 
-      {/* Hero */}
-      <section className="max-w-7xl mx-auto px-8 py-24">
+      {/* ================= HERO ================= */}
+      <section className="relative overflow-hidden min-h-[650px] flex items-center">
 
-        <div className="grid md:grid-cols-2 gap-20 items-center">
+        {/* Background Image */}
+        <img
+          src="/kilitbahir.jpg"
+          alt="Kilitbahir"
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+        />
 
-          {/* Left */}
-          <div>
+        {/* White / Blue Overlay */}
+        <div className="absolute inset-0 bg-white/65"></div>
 
-            <p className="text-blue-700 font-bold tracking-widest uppercase">
-              Industrial Solutions
-            </p>
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-8 py-24">
 
-            <h2 className="text-6xl font-extrabold text-slate-900 leading-tight mt-4">
-              Precision CNC Manufacturing
-            </h2>
+          <div className="grid md:grid-cols-2 gap-20 items-center">
 
-            <p className="text-gray-600 mt-8 text-lg leading-8">
-              DEMIR TORNA provides high-quality industrial machining,
-              precision turning and manufacturing solutions using modern
-              CNC technology.
-            </p>
+            {/* Left */}
+            <div>
 
-            <div className="flex gap-5 mt-10">
+              <p className="text-blue-700 font-bold tracking-widest uppercase">
+                Industrial Solutions
+              </p>
 
-              <Link
-                href="/dashboard/gallery"
-                className="bg-blue-900 text-white px-7 py-4 rounded-xl hover:bg-blue-800 transition"
-              >
-                View Products
-              </Link>
+              <h2 className="text-6xl font-extrabold text-slate-900 leading-tight mt-4">
+                Precision CNC Manufacturing
+              </h2>
 
-              <Link
-                href="/login"
-                className="border border-blue-900 text-blue-900 px-7 py-4 rounded-xl hover:bg-blue-900 hover:text-white transition"
-              >
-                Admin Login
-              </Link>
+              <p className="text-gray-700 mt-8 text-lg leading-8 max-w-2xl">
+                DEMIR TORNA provides high-quality industrial machining,
+                precision turning and manufacturing solutions using modern
+                CNC technology.
+              </p>
+
+              <div className="flex gap-5 mt-10 flex-wrap">
+
+                <Link
+                  href="/dashboard/gallery"
+                  className="bg-blue-900 text-white px-7 py-4 rounded-xl hover:bg-blue-800 transition shadow-lg"
+                >
+                  View Products
+                </Link>
+
+                <Link
+                  href="/login"
+                  className="border border-blue-900 text-blue-900 px-7 py-4 rounded-xl hover:bg-blue-900 hover:text-white transition bg-white/70"
+                >
+                  Admin Login
+                </Link>
+
+              </div>
 
             </div>
 
-          </div>
 
+            {/* Right - Small Glass Card */}
+            <div className="flex justify-center">
 
-          {/* Company Image */}
-          <div className="flex justify-center">
+              <div className="w-full max-w-xl bg-white/65 backdrop-blur-sm rounded-3xl p-10 shadow-2xl border border-white/70">
 
-            <div className="w-full h-[500px] rounded-3xl bg-blue-100 flex items-center justify-center text-5xl text-blue-900 font-bold shadow-lg">
-              Company Image
+                <p className="text-blue-700 font-bold tracking-widest uppercase text-sm">
+                  DEMIR TORNA
+                </p>
+
+                <h3 className="text-4xl font-bold text-slate-900 mt-4">
+                  Precision. Quality. Reliability.
+                </h3>
+
+                <p className="text-gray-700 mt-5 text-lg leading-8">
+                  Advanced CNC machining and industrial manufacturing
+                  solutions designed for precision and performance.
+                </p>
+
+                <div className="mt-8 grid grid-cols-3 gap-4">
+
+                  <div className="bg-white/80 rounded-2xl p-4 text-center shadow-sm">
+                    <div className="text-2xl font-bold text-blue-900">
+                      CNC
+                    </div>
+                    <p className="text-sm text-gray-500 mt-1">
+                      Technology
+                    </p>
+                  </div>
+
+                  <div className="bg-white/80 rounded-2xl p-4 text-center shadow-sm">
+                    <div className="text-2xl font-bold text-blue-900">
+                      100%
+                    </div>
+                    <p className="text-sm text-gray-500 mt-1">
+                      Precision
+                    </p>
+                  </div>
+
+                  <div className="bg-white/80 rounded-2xl p-4 text-center shadow-sm">
+                    <div className="text-2xl font-bold text-blue-900">
+                      Pro
+                    </div>
+                    <p className="text-sm text-gray-500 mt-1">
+                      Solutions
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+
             </div>
 
           </div>
@@ -105,7 +164,7 @@ export default async function Home() {
       </section>
 
 
-      {/* Services */}
+      {/* ================= SERVICES ================= */}
       <section className="max-w-7xl mx-auto px-8 py-20">
 
         <div className="text-center mb-14">
@@ -123,6 +182,7 @@ export default async function Home() {
 
         <div className="grid md:grid-cols-4 gap-8">
 
+          {/* Service 1 */}
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition">
 
             <div className="text-5xl mb-5">
@@ -140,6 +200,7 @@ export default async function Home() {
           </div>
 
 
+          {/* Service 2 */}
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition">
 
             <div className="text-5xl mb-5">
@@ -157,6 +218,7 @@ export default async function Home() {
           </div>
 
 
+          {/* Service 3 */}
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition">
 
             <div className="text-5xl mb-5">
@@ -174,6 +236,7 @@ export default async function Home() {
           </div>
 
 
+          {/* Service 4 */}
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition">
 
             <div className="text-5xl mb-5">
@@ -195,7 +258,7 @@ export default async function Home() {
       </section>
 
 
-      {/* Featured Products */}
+      {/* ================= FEATURED PRODUCTS ================= */}
       <section className="bg-white py-24">
 
         <div className="max-w-7xl mx-auto px-8">
@@ -232,13 +295,14 @@ export default async function Home() {
 
 
           {/* Products */}
-          {products && products.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {products && products.length > 0 ? (
 
-              {products.map((product) => (
+              products.map((product) => (
 
-                <div
+                <Link
+                  href={`/products/${product.id}`}
                   key={product.id}
                   className="group bg-slate-50 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition duration-300"
                 >
@@ -256,8 +320,20 @@ export default async function Home() {
 
                     ) : (
 
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">
-                        No Image
+                      <div className="w-full h-full flex items-center justify-center">
+
+                        <div className="text-center">
+
+                          <div className="text-5xl mb-3">
+                            ⚙️
+                          </div>
+
+                          <span className="text-slate-400">
+                            Product Image
+                          </span>
+
+                        </div>
+
                       </div>
 
                     )}
@@ -272,51 +348,144 @@ export default async function Home() {
                       DEMIR TORNA PRODUCT
                     </p>
 
-
                     <h3 className="text-2xl font-bold text-slate-900 mt-2">
                       {product.name}
                     </h3>
 
-
                     <p className="text-gray-600 mt-3 leading-7">
-                      {product.description || "Industrial CNC manufactured product."}
+                      {product.description}
                     </p>
 
-
-                    <Link
-                      href={`/products/${product.id}`}
-                      className="inline-block mt-5 text-blue-900 font-semibold hover:underline"
-                    >
+                    <div className="mt-5 text-blue-900 font-semibold">
                       View Details →
-                    </Link>
+                    </div>
+
+                  </div>
+
+                </Link>
+
+              ))
+
+            ) : (
+
+              <>
+                {/* Empty Product 1 */}
+                <div className="bg-slate-50 rounded-3xl overflow-hidden shadow-md">
+
+                  <div className="h-72 bg-slate-200 flex items-center justify-center">
+
+                    <div className="text-center">
+
+                      <div className="text-5xl mb-3">
+                        ⚙️
+                      </div>
+
+                      <span className="text-slate-400">
+                        Product Image
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                  <div className="p-7">
+
+                    <p className="text-blue-700 text-sm font-semibold uppercase tracking-wide">
+                      CNC Component
+                    </p>
+
+                    <h3 className="text-2xl font-bold text-slate-900 mt-2">
+                      Precision Part
+                    </h3>
+
+                    <p className="text-gray-600 mt-3">
+                      High precision industrial component.
+                    </p>
 
                   </div>
 
                 </div>
 
-              ))}
 
-            </div>
+                {/* Empty Product 2 */}
+                <div className="bg-slate-50 rounded-3xl overflow-hidden shadow-md">
 
-          ) : (
+                  <div className="h-72 bg-slate-200 flex items-center justify-center">
 
-            <div className="text-center py-16">
+                    <div className="text-center">
 
-              <div className="text-5xl mb-4">
-                ⚙️
-              </div>
+                      <div className="text-5xl mb-3">
+                        🔩
+                      </div>
 
-              <h3 className="text-2xl font-bold text-slate-900">
-                No Products Yet
-              </h3>
+                      <span className="text-slate-400">
+                        Product Image
+                      </span>
 
-              <p className="text-gray-500 mt-2">
-                Products uploaded by the administrator will appear here.
-              </p>
+                    </div>
 
-            </div>
+                  </div>
 
-          )}
+                  <div className="p-7">
+
+                    <p className="text-blue-700 text-sm font-semibold uppercase tracking-wide">
+                      Metal Component
+                    </p>
+
+                    <h3 className="text-2xl font-bold text-slate-900 mt-2">
+                      Industrial Part
+                    </h3>
+
+                    <p className="text-gray-600 mt-3">
+                      Durable industrial metal component.
+                    </p>
+
+                  </div>
+
+                </div>
+
+
+                {/* Empty Product 3 */}
+                <div className="bg-slate-50 rounded-3xl overflow-hidden shadow-md">
+
+                  <div className="h-72 bg-slate-200 flex items-center justify-center">
+
+                    <div className="text-center">
+
+                      <div className="text-5xl mb-3">
+                        🛠️
+                      </div>
+
+                      <span className="text-slate-400">
+                        Product Image
+                      </span>
+
+                    </div>
+
+                  </div>
+
+                  <div className="p-7">
+
+                    <p className="text-blue-700 text-sm font-semibold uppercase tracking-wide">
+                      Custom Manufacturing
+                    </p>
+
+                    <h3 className="text-2xl font-bold text-slate-900 mt-2">
+                      Custom Component
+                    </h3>
+
+                    <p className="text-gray-600 mt-3">
+                      Custom-made industrial parts.
+                    </p>
+
+                  </div>
+
+                </div>
+              </>
+
+            )}
+
+          </div>
 
 
           {/* Mobile View All */}
@@ -336,30 +505,55 @@ export default async function Home() {
       </section>
 
 
-      {/* Footer */}
-      <footer className="bg-blue-950 text-white py-10">
+      {/* ================= FOOTER ================= */}
+      <footer className="bg-blue-950 text-white py-12">
 
         <div className="max-w-7xl mx-auto px-8">
 
-          <div className="flex flex-col md:flex-row justify-between gap-6">
+          <div className="grid md:grid-cols-3 gap-10">
 
             <div>
 
-              <h3 className="text-2xl font-bold">
+              <h2 className="text-2xl font-bold">
                 DEMIR TORNA
-              </h3>
+              </h2>
 
-              <p className="text-blue-200 mt-2">
-                CNC MACHINING
+              <p className="text-blue-200 mt-3">
+                CNC Machining & Industrial Manufacturing
               </p>
 
             </div>
 
 
-            <div className="text-blue-200">
+            <div>
 
-              <p>
-                Precision CNC manufacturing and industrial solutions.
+              <h3 className="font-bold text-lg">
+                Services
+              </h3>
+
+              <p className="text-blue-200 mt-3">
+                CNC Turning
+              </p>
+
+              <p className="text-blue-200 mt-2">
+                Metal Components
+              </p>
+
+              <p className="text-blue-200 mt-2">
+                Custom Manufacturing
+              </p>
+
+            </div>
+
+
+            <div>
+
+              <h3 className="font-bold text-lg">
+                DEMIR TORNA
+              </h3>
+
+              <p className="text-blue-200 mt-3">
+                Precision manufacturing solutions.
               </p>
 
             </div>
@@ -367,7 +561,7 @@ export default async function Home() {
           </div>
 
 
-          <div className="border-t border-blue-800 mt-8 pt-6 text-sm text-blue-300">
+          <div className="border-t border-blue-800 mt-10 pt-6 text-center text-blue-300">
             © {new Date().getFullYear()} DEMIR TORNA. All rights reserved.
           </div>
 
