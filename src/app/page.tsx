@@ -4,11 +4,22 @@ import { supabase } from "@/lib/supabase";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const { data: products } = await supabase
-    .from("products")
-    .select("id, name, description, image_url")
-    .order("id", { ascending: false })
-    .limit(3);
+  let products: any[] = [];
+
+  try {
+    const { data, error } = await supabase
+      .from("products")
+      .select("id, name, description, image_url")
+      .order("id", { ascending: false })
+      .limit(3);
+
+    if (!error && data) {
+      products = data;
+    }
+  } catch (error) {
+    console.error("Supabase fetch failed:", error);
+    products = [];
+  }
 
   return (
     <main className="min-h-screen bg-slate-50">
@@ -58,7 +69,7 @@ export default async function Home() {
           className="absolute inset-0 w-full h-full object-cover opacity-20"
         />
 
-        {/* White / Blue Overlay */}
+        {/* Overlay */}
         <div className="absolute inset-0 bg-white/65"></div>
 
         {/* Hero Content */}
@@ -66,7 +77,7 @@ export default async function Home() {
 
           <div className="grid md:grid-cols-2 gap-20 items-center">
 
-            {/* Left */}
+            {/* LEFT SIDE */}
             <div>
 
               <p className="text-blue-700 font-bold tracking-widest uppercase">
@@ -104,7 +115,7 @@ export default async function Home() {
             </div>
 
 
-            {/* Right - Small Glass Card */}
+            {/* RIGHT SIDE */}
             <div className="flex justify-center">
 
               <div className="w-full max-w-xl bg-white/65 backdrop-blur-sm rounded-3xl p-10 shadow-2xl border border-white/70">
@@ -128,6 +139,7 @@ export default async function Home() {
                     <div className="text-2xl font-bold text-blue-900">
                       CNC
                     </div>
+
                     <p className="text-sm text-gray-500 mt-1">
                       Technology
                     </p>
@@ -137,6 +149,7 @@ export default async function Home() {
                     <div className="text-2xl font-bold text-blue-900">
                       100%
                     </div>
+
                     <p className="text-sm text-gray-500 mt-1">
                       Precision
                     </p>
@@ -146,6 +159,7 @@ export default async function Home() {
                     <div className="text-2xl font-bold text-blue-900">
                       Pro
                     </div>
+
                     <p className="text-sm text-gray-500 mt-1">
                       Solutions
                     </p>
@@ -297,7 +311,7 @@ export default async function Home() {
           {/* Products */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            {products && products.length > 0 ? (
+            {products.length > 0 ? (
 
               products.map((product) => (
 
@@ -369,7 +383,7 @@ export default async function Home() {
             ) : (
 
               <>
-                {/* Empty Product 1 */}
+                {/* Default Product 1 */}
                 <div className="bg-slate-50 rounded-3xl overflow-hidden shadow-md">
 
                   <div className="h-72 bg-slate-200 flex items-center justify-center">
@@ -407,7 +421,7 @@ export default async function Home() {
                 </div>
 
 
-                {/* Empty Product 2 */}
+                {/* Default Product 2 */}
                 <div className="bg-slate-50 rounded-3xl overflow-hidden shadow-md">
 
                   <div className="h-72 bg-slate-200 flex items-center justify-center">
@@ -445,7 +459,7 @@ export default async function Home() {
                 </div>
 
 
-                {/* Empty Product 3 */}
+                {/* Default Product 3 */}
                 <div className="bg-slate-50 rounded-3xl overflow-hidden shadow-md">
 
                   <div className="h-72 bg-slate-200 flex items-center justify-center">
@@ -481,6 +495,7 @@ export default async function Home() {
                   </div>
 
                 </div>
+
               </>
 
             )}
