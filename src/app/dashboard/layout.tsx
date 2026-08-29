@@ -6,51 +6,70 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="relative min-h-screen overflow-hidden">
 
-      <header className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-5">
+      {/* ================= BACKGROUND IMAGE ================= */}
+      <img
+        src="/kilitbahir.jpg"
+        alt="Kilitbahir"
+        className="fixed inset-0 w-full h-full object-cover opacity-90"
+        style={{ objectPosition: "center center" }}
+      />
 
-          <h1 className="text-3xl font-bold text-blue-900">
-            DEMIR TORNA
-          </h1>
+      {/* ================= LIGHT OVERLAY ================= */}
+      <div className="fixed inset-0 bg-white/35" />
 
-          <nav className="flex items-center gap-8">
+      {/* ================= CONTENT ================= */}
+      <div className="relative z-10 min-h-screen">
 
-            <Link
-              href="/dashboard"
-              className="text-blue-900 font-semibold hover:text-blue-700"
-            >
-              Dashboard
-            </Link>
+        {/* ================= HEADER ================= */}
+        <header className="bg-white/85 backdrop-blur-md shadow-md border-b border-white/60">
+          <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-5">
 
-            <Link
-              href="/dashboard/upload"
-              className="text-blue-900 font-semibold hover:text-blue-700"
-            >
-              Upload
-            </Link>
+            {/* LOGO */}
+            <h1 className="text-3xl font-bold text-blue-900">
+              DEMIR TORNA
+            </h1>
 
-            <Link
-              href="/dashboard/gallery"
-              className="text-blue-900 font-semibold hover:text-blue-700"
-            >
-              Gallery
-            </Link>
+            {/* NAVIGATION */}
+            <nav className="flex items-center gap-8">
 
-            <button className="bg-blue-900 text-white px-5 py-2 rounded-lg hover:bg-blue-800">
-              Logout
-            </button>
+              <Link
+                href="/dashboard"
+                className="text-blue-900 font-semibold hover:text-blue-700 transition"
+              >
+                Dashboard
+              </Link>
 
-          </nav>
+              <Link
+                href="/dashboard/upload"
+                className="text-blue-900 font-semibold hover:text-blue-700 transition"
+              >
+                Upload
+              </Link>
 
-        </div>
-      </header>
+              <Link
+                href="/dashboard/gallery"
+                className="text-blue-900 font-semibold hover:text-blue-700 transition"
+              >
+                Gallery
+              </Link>
 
-      <main className="max-w-7xl mx-auto p-8">
-        {children}
-      </main>
+              <button className="bg-blue-900 text-white px-5 py-2 rounded-lg hover:bg-blue-800 transition">
+                Logout
+              </button>
 
+            </nav>
+
+          </div>
+        </header>
+
+        {/* ================= PAGE CONTENT ================= */}
+        <main className="max-w-7xl mx-auto p-8">
+          {children}
+        </main>
+
+      </div>
     </div>
   );
 }
