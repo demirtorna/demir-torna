@@ -66,7 +66,7 @@ export default async function Home() {
         <img
           src="/kilitbahir.jpg"
           alt="Kilitbahir"
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
+          className="absolute inset-0 w-full h-full object-cover opacity-70"
         />
 
         {/* Overlay */}
